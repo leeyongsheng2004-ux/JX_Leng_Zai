@@ -7,7 +7,6 @@ public class ProgressTracker : MonoBehaviour
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI counterText;
     public TextMeshProUGUI statusText;
-    public TextMeshProUGUI promptText; // Dedicated prompt display for card warnings
 
     [Header("Goal")]
     public int totalBoxesRequired = 10;
@@ -19,35 +18,16 @@ public class ProgressTracker : MonoBehaviour
     public AudioClip correctDropSound;
     public AudioClip victorySound;
 
-    [Header("Card Prompts")]
-    public AudioClip cardInsertSound;
-    public AudioClip cardWarningSound;
-
     private float elapsedTime = 0f;
     private bool isComplete = false;
     private bool isTimerRunning = false;
 
     void Start()
     {
-        // Initialize UI displays
+        // Initialize timer text display at 00:00
         if (timerText != null)
         {
-            timerText.text = "<color=#00E5FF>TIME:</color> 00:00";
-        }
-
-        if (counterText != null)
-        {
-            counterText.text = $"<color=#8EA4C8>DELIVERED:</color> <color=#FFD000>{boxesDelivered}</color> <color=#556677>/</color> {totalBoxesRequired}";
-        }
-
-        if (statusText != null)
-        {
-            statusText.text = "<color=#8EA4C8>STATUS:</color> <color=#FFA500>Delivering</color>";
-        }
-
-        if (promptText != null)
-        {
-    promptText.text = "<color=#FF3333>⚠ INSERT KEYCARD TO OPERATE</color>";
+            timerText.text = "Time: 00:00";
         }
     }
 
@@ -60,34 +40,8 @@ public class ProgressTracker : MonoBehaviour
             int seconds = Mathf.FloorToInt(elapsedTime % 60F);
             if (timerText != null)
             {
-                timerText.text = $"<color=#00E5FF>TIME:</color> {minutes:00}:{seconds:00}";
+                timerText.text = $"Time: {minutes:00}:{seconds:00}";
             }
-        }
-    }
-
-    public void OnCardInserted()
-    {
-        if (audioSource != null && cardInsertSound != null)
-        {
-            audioSource.PlayOneShot(cardInsertSound);
-        }
-
-        if (promptText != null)
-        {
-            promptText.text = "<color=#00E676>● CARD ACCEPTED</color>";
-        }
-    }
-
-    public void OnCardRemoved()
-    {
-        if (audioSource != null && cardWarningSound != null)
-        {
-            audioSource.PlayOneShot(cardWarningSound);
-        }
-
-        if (promptText != null && !isComplete)
-        {
-            promptText.text = "<color=#FF3333>⚠ INSERT KEYCARD TO OPERATE</color>";
         }
     }
 
@@ -115,7 +69,7 @@ public class ProgressTracker : MonoBehaviour
             // Update UI
             if (counterText != null)
             {
-                counterText.text = $"<color=#8EA4C8>DELIVERED:</color> <color=#FFD000>{boxesDelivered}</color> <color=#556677>/</color> {totalBoxesRequired}";
+                counterText.text = $"Boxes Delivered: {boxesDelivered} / {totalBoxesRequired}";
             }
 
             // Trigger visual & audio feedback
@@ -145,12 +99,7 @@ public class ProgressTracker : MonoBehaviour
 
         if (statusText != null)
         {
-            statusText.text = "<color=#00E676><b>MISSION COMPLETE!</b></color>";
-        }
-
-        if (promptText != null)
-        {
-            promptText.text = "";
+            statusText.text = "<color=green>Training Complete!</color>";
         }
 
         if (audioSource != null && victorySound != null)
