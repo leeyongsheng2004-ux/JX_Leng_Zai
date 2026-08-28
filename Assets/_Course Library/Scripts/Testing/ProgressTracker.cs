@@ -7,7 +7,7 @@ public class ProgressTracker : MonoBehaviour
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI counterText;
     public TextMeshProUGUI statusText;
-    public TextMeshProUGUI promptText; // Dedicated prompt display for card warnings
+    public TextMeshProUGUI promptText; 
 
     [Header("Goal")]
     public int totalBoxesRequired = 10;
