@@ -10,7 +10,7 @@ public class ProgressTracker : MonoBehaviour
     public TextMeshProUGUI promptText; 
 
     [Header("Goal")]
-    public int totalBoxesRequired = 10;
+    public int totalBoxesRequired = 1;
     private int boxesDelivered = 0;
 
     [Header("Feedback Effects")]

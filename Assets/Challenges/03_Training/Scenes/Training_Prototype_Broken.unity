@@ -12126,7 +12126,7 @@ MonoBehaviour:
   counterText: {fileID: 1442619649}
   statusText: {fileID: 1576843260}
   promptText: {fileID: 1527817641}
-  totalBoxesRequired: 10
+  totalBoxesRequired: 1
   successParticles: {fileID: 440530742}
   audioSource: {fileID: 713705438}
   correctDropSound: {fileID: 8300000, guid: a6d54794b4ce94de1b7b1587af379192, type: 3}

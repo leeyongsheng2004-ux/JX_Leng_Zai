@@ -41,7 +41,7 @@ public class HUDReset : MonoBehaviour
         isRunning = false;
         elapsedTime = 0f;
         if (timerText != null) timerText.text = "Time: 00:00";
-        if (counterText != null) counterText.text = "Boxes Delivered: 0 / 10";
+        if (counterText != null) counterText.text = "Boxes Delivered: 0 / 1";
         if (statusText != null) statusText.text = "Status: Delivering";
     }
 }
